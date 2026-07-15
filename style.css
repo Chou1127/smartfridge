@@ -1,0 +1,112 @@
+:root{
+  --bg:#fafafa;
+  --panel:#fff;
+  --muted:#6b6b6b;
+  --accent:#2b9348;
+  --glass: rgba(0,0,0,0.04);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+main#app{
+  width:100%;
+  max-width:900px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  align-self:stretch;
+}
+.panel{
+  background:var(--panel);
+  border-radius:12px;
+  padding:12px;
+  box-shadow: 0 6px 18px var(--glass);
+}
+.input .row{margin-bottom:8px}
+textarea#sheetInput{
+  width:100%;
+  height:160px;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #e7e7e7;
+  resize:vertical;
+  font-size:14px;
+}
+.controls{display:flex;gap:8px;align-items:center}
+button{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  font-weight:600;
+  font-size:14px;
+}
+button.muted{
+  background:#f1f1f1;color:#333;
+}
+.row.hint{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center}
+#fileInput{font-size:13px}
+.results h2{margin:0 0 8px 0;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips .chip{
+  background:#f5f7f6;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:13px;
+  color:#333;
+  cursor:pointer;
+  user-select:none;
+  transition:transform .08s ease, box-shadow .08s ease;
+}
+.chips .chip:active{ transform:scale(.98) }
+.chips .chip.selected{
+  background:linear-gradient(180deg,#e6f7ea,#d9f0dd);
+  box-shadow: 0 4px 10px rgba(43,147,72,0.12);
+  color: #165c2a;
+  font-weight:600;
+}
+.recipeControls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:12px 0;
+  flex-wrap:wrap;
+}
+.recipeControls label{font-size:13px;color:var(--muted)}
+.recipeControls input[type=number]{width:64px;padding:6px;border-radius:6px;border:1px solid #e7e7e7}
+.recipeControls select{padding:6px;border-radius:6px;border:1px solid #e7e7e7}
+.recipes{display:grid;gap:10px}
+.recipe{
+  padding:10px;border-radius:10px;border:1px solid #eef3ee;background:linear-gradient(180deg,#ffffff, #fbfffb);
+}
+.recipe h3{margin:0 0 6px 0;font-size:15px}
+.recipe .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
+.recipe ul{margin:6px 0 0 18px;padding:0}
+.recipe p{margin:8px 0 0 0;font-size:14px}
+.small{font-size:12px;color:var(--muted)}
+.qr-btn{
+  background:transparent;color:var(--accent);border:1px solid var(--accent);padding:6px 8px;border-radius:8px;font-weight:600;font-size:13px;margin-left:6px;
+}
+.qr-btn:hover{background:rgba(43,147,72,0.06)}
+.qr-modal{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:9999;opacity:0;pointer-events:none;transition:opacity .12s ease;
+}
+.qr-modal.open{opacity:1;pointer-events:auto}
+.qr-card{background:#fff;padding:16px;border-radius:12px;min-width:200px;max-width:90%;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
+.qr-card canvas, .qr-card img{width:200px;height:200px;max-width:80vw;max-height:80vw}
+.qr-card .qr-title{font-weight:700;margin-bottom:8px}
+.qr-card .qr-actions{display:flex;gap:8px;justify-content:center;margin-top:10px}
+@media(min-width:700px){
+  main#app{grid-template-columns:1fr 1fr;align-items:start}
+  textarea#sheetInput{height:320px}
+}
