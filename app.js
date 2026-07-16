@@ -67,7 +67,7 @@ async function autoSyncAndGenerate() {
     ingredients = activeIngredients;
     renderIngredientChips();
     
-    let statusText = `✅ 同步成功！偵測到冰箱有 ${ingredients.length} 種新鮮/即期食材。`;
+    let statusText = `✅ 同步成功！偵測到冰箱有 ${ingredients.length} 種食材。`;
     if (expiredCount > 0) statusText += `（已排除 ${expiredCount} 項過期品）`;
     syncStatus.innerHTML = `<span style='color: #27ae60;'>${statusText}</span>`;
 
