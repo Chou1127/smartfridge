@@ -5,19 +5,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>智慧食材管家 - 自動食譜生成</title>
   <link rel="stylesheet" href="./style.css">
+  
+  <style>
+    .loading-spinner {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 3px solid rgba(52, 152, 219, 0.2);
+      border-radius: 50%;
+      border-top-color: #3498db;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+  </style>
 </head>
 <body>
   <main id="app">
     <section class="panel input" style="text-align: center; padding: 20px;">
       <h2 style="margin: 0 0 10px 0; color: #2c3e50;">🍳 智慧冰箱食材管家</h2>
-      <p id="syncStatus" style="font-size: 1.1rem; color: #7f8c8d; font-weight: bold;">正在連線冰箱試算表，請稍候...</p>
+      <p id="syncStatus" style="font-size: 1.1rem; color: #7f8c8d; font-weight: bold;">
+        🔄 正在連線冰箱試算表，請稍候...
+      </p>
       
       <div id="ingredientsList" class="chips" style="justify-content: center; margin-top: 15px;"></div>
-      <div id="summary" style="margin-top: 8px; font-size: 0.9rem; color: #95a5a6;"></div>
+      
+      <div id="summary" style="margin-top: 12px; font-size: 0.95rem; color: #34495e; font-weight: 500;"></div>
     </section>
 
     <section class="panel results" aria-live="polite">
-      <div id="recipes" class="recipes"></div>
+      <div id="recipes" class="recipes">
+        <div style="text-align:center; color:#95a5a6; padding: 40px 20px;">
+          <p style="font-size: 3rem; margin: 0 0 15px 0;">📱</p>
+          <p>等待冰箱食材同步中...</p>
+        </div>
+      </div>
     </section>
   </main>
 
