@@ -40,7 +40,7 @@ async function autoSyncAndGenerate() {
     today.setHours(0, 0, 0, 0);
 
     const activeIngredients = [];
-    let expiredCount = 0;
+    const expiredIngredients = []; 
 
     // 日期安全檢查與過濾（自動排除過期食材）
     rawData.forEach(item => {
@@ -49,7 +49,7 @@ async function autoSyncAndGenerate() {
       if (item.expiry_date) {
         const expDate = new Date(item.expiry_date);
         if (expDate < today) {
-          expiredCount++;
+          expiredIngredients.push(item.category.trim()); //記錄過期食材名稱
           return; // 已過期則排除
         }
       }
@@ -58,7 +58,10 @@ async function autoSyncAndGenerate() {
 
     if (activeIngredients.length === 0) {
       syncStatus.textContent = '🫙 目前冰箱空空如也（或食材皆已過期）';
-      summary.textContent = expiredCount > 0 ? `（已自動過濾了 ${expiredCount} 個過期食材）` : '';
+      //同步顯示過期的食材名稱
+      summary.textContent = expiredIngredients.length > 0 
+        ? `（已自動過濾了過期食材：${expiredIngredients.join('、')}）` 
+        : '';
       recipesEl.innerHTML = '<div style="text-align:center; color:#95a5a6;">冰箱內沒有可用新鮮食材，無法生成食譜。</div>';
       return;
     }
@@ -67,9 +70,12 @@ async function autoSyncAndGenerate() {
     ingredients = activeIngredients;
     renderIngredientChips();
     
-    let statusText = `✅ 同步成功！偵測到冰箱有 ${ingredients.length} 種食材。`;
-    if (expiredCount > 0) statusText += `（已排除 ${expiredCount} 項過期品）`;
-    syncStatus.innerHTML = `<span style='color: #27ae60;'>${statusText}</span>`;
+    //組合顯示狀態，加入換行與過期食材明細
+    let statusHTML = `✅ 同步成功！偵測到冰箱有 ${ingredients.length} 種食材。`;
+    if (expiredIngredients.length > 0) {
+      statusHTML += `<br><span style="color: #e67e22; font-size: 0.95rem;">⚠️ 已排除 ${expiredIngredients.length} 項過期品（${expiredIngredients.join('、')}）</span>`;
+    }
+    syncStatus.innerHTML = `<span style='color: #27ae60;'>${statusHTML}</span>`;
 
     // 依食材數量評估要請 AI 生成幾道菜（AI 生成較耗時，建議上限設為 2~3 道）
     const recommendedCount = evaluateRecipeCount(ingredients.length);
