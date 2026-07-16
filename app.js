@@ -165,9 +165,9 @@ function renderRecipesToDOM(recipesList) {
     });
 
     // 5. 整合 YouTube 搜尋與前端 QR Code
-    // 利用「菜名 + 兩個食材名稱」組合出最精準的 YouTube 實作影片搜尋網址
-    const query = r.title + ' ' + r.ingredients.slice(0, 2).map(item => item.split('（')[0]).join(' ');
-    const ytUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query + ' 做法 教學')}`;
+  const mainIngredient = r.ingredients[0] ? r.ingredients[0].split(' ')[0].split('（')[0] : "食材";
+  const query = `${mainIngredient} 的簡單做法`;
+  const ytUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
     
     const footerContainer = document.createElement('div');
     footerContainer.style.display = 'flex';
@@ -183,7 +183,7 @@ function renderRecipesToDOM(recipesList) {
     link.href = ytUrl;
     link.target = '_blank';
     link.rel = 'noopener';
-    link.textContent = '📺 點此看 YouTube 教學影片';
+    link.innerHTML = '如果不喜歡這道料理，<br>📺 點此看其他 YouTube 教學影片';
     link.style.fontWeight = 'bold';
     link.style.color = '#e74c3c';
     link.style.textDecoration = 'none';
