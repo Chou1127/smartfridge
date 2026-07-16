@@ -73,7 +73,7 @@ async function autoSyncAndGenerate() {
 
     // 依食材數量評估要請 AI 生成幾道菜（AI 生成較耗時，建議上限設為 2~3 道）
     const recommendedCount = evaluateRecipeCount(ingredients.length);
-    summary.textContent = `🤖 AI 正在根據您的即期食材多樣性，量身打造 ${recommendedCount} 道創意食譜...`;
+    summary.textContent = `🤖 AI 根據您的即期食材多樣性，量身打造 ${recommendedCount} 道創意食譜!`;
 
     // 步驟 2：呼叫後端 GAS 讓 AI 廚神動態生成食譜
     await fetchAndRenderAIRecipes(recommendedCount);
