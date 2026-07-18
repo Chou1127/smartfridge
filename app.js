@@ -1,4 +1,4 @@
-const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyaud4jw7OyAgN_YhY228wyZKl1Z_Y0sbwT9F3tt3C-CZKAJxxXxY4gIHPmn2eUMQcWbw/exec"; 
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCiVjSCSUn9F8o1BmueNGpVKAkgUhf7LJ-Iz4pIiqeWW4V58vUcPS7F83DzNm5Q-VyeA/exec"; 
 
 const syncStatus = document.getElementById('syncStatus');
 const ingredientsList = document.getElementById('ingredientsList');
