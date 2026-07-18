@@ -85,9 +85,9 @@ button.muted{
 .recipeControls label{font-size:13px;color:var(--muted)}
 .recipeControls input[type=number]{width:64px;padding:6px;border-radius:6px;border:1px solid #e7e7e7}
 .recipeControls select{padding:6px;border-radius:6px;border:1px solid #e7e7e7}
-.recipes{display:grid;gap:10px;counter-reset: step-counter;}
+.recipes{display:grid;gap:10px;}
 .recipe{
-  padding:10px;border-radius:10px;border:1px solid #eef3ee;background:linear-gradient(180deg,#ffffff, #fbfffb);
+  padding:10px;border-radius:10px;border:1px solid #eef3ee;background:linear-gradient(180deg,#ffffff, #fbfffb);counter-reset: step-counter;
 }
 .recipe h3{margin:0 0 6px 0;font-size:18px; }
 .recipe .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
